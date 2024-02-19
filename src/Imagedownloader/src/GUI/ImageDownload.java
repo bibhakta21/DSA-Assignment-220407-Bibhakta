@@ -31,10 +31,9 @@ import javax.swing.SwingUtilities;
  * @author Bibhakta lamsal
  */
 public class ImageDownload extends javax.swing.JFrame {
-    private static final String DESTINATION_FOLDER = System.getProperty("user.home") + "/Downloads/";
+     private static final String DESTINATION_FOLDER = System.getProperty("user.home") + "/Downloads/";
     private final ExecutorService executorService;
     private final Semaphore downloadSemaphore;
-    private volatile boolean paused;
     private DownloadTask currentTask;
 
 
@@ -45,9 +44,10 @@ public class ImageDownload extends javax.swing.JFrame {
         initComponents();
 
         // Add ActionListener to the "Download" button
+       
         executorService = Executors.newFixedThreadPool(10);
-        downloadSemaphore = new Semaphore(10); // Limit concurrent downloads
-        paused = false;
+        downloadSemaphore = new Semaphore(10);
+        
 
         button1.addActionListener(new ActionListener() {
             @Override
@@ -70,7 +70,7 @@ public class ImageDownload extends javax.swing.JFrame {
             }
         });
 
-         cancel.addActionListener(new ActionListener() {
+        cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cancelDownload();
@@ -78,106 +78,104 @@ public class ImageDownload extends javax.swing.JFrame {
         });
     }
 
-    
-
-  private class DownloadTask implements Runnable {
+    private class DownloadTask implements Runnable {
         private final String urlText;
         private final JProgressBar progressBar;
-        
+
+        private volatile boolean paused;
+        private volatile boolean canceled;
 
         public DownloadTask(String urlText, JProgressBar progressBar) {
             this.urlText = urlText;
             this.progressBar = progressBar;
         }
 
-        private volatile boolean paused;
-         private volatile boolean canceled;
+  public void pause() {
+        paused = true;
+    }
 
-        public void pause() {
-            paused = true;
-        }
-
-        public void resume() {
-            synchronized (this) {
-                paused = false;
-                notifyAll(); // Notify waiting threads (if any) that it's safe to resume
-            }
-        }
-        
-          public void cancel() {
-            canceled = true;
-        }
-
-        @Override
-        public void run() {
-            try {
-                URI uri = new URI(urlText);
-
-                downloadSemaphore.acquire();
-
-                synchronized (this) {
-                    while (paused) {
-                        wait();
-                    }
-                }
-
-                HttpClient httpClient = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
-
-                HttpResponse<InputStream> response = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
-
-                String fileName = uri.getPath().substring(uri.getPath().lastIndexOf("/") + 1);
-                String timestamp = String.valueOf(System.currentTimeMillis());
-                fileName = timestamp + "_" + fileName;
-
-                Path destination = Path.of(DESTINATION_FOLDER, fileName);
-
-                long contentLength = response.headers().firstValueAsLong("Content-Length").orElse(-1);
-                long totalBytesRead = 0;
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-
-                try (InputStream inputStream = response.body()) {
-                    try (OutputStream outputStream = Files.newOutputStream(destination)) {
-                        while ((bytesRead = inputStream.read(buffer)) != -1) {
-                            synchronized (this) {
-                                while (paused) {
-                                    wait();
-                                }
-                            }
-
-                            if (canceled) {
-                                break;
-                            }
-
-                            totalBytesRead += bytesRead;
-
-                            int progress = (int) ((double) totalBytesRead / contentLength * 100);
-                            SwingUtilities.invokeLater(() -> {
-                                progressBar.setValue(progress);
-                                percentage.setText("Percentage: " + progress + "%");
-                            });
-
-                            outputStream.write(buffer, 0, bytesRead);
-                            Thread.sleep(300);
-                        }
-                    }
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(ImageDownload.this, "Error downloading image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                JOptionPane.showMessageDialog(ImageDownload.this, "Image downloaded successfully!\nSaved to: " + destination.toString());
-            } catch (URISyntaxException | IOException | InterruptedException ex) {
-                JOptionPane.showMessageDialog(ImageDownload.this, "Error downloading image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } finally {
-                progressBar.setValue(0);
-                textField1.setText("");
-                percentage.setText("");
-                downloadSemaphore.release();
-                currentTask = null;
-            }
+    public void resume() {
+        synchronized (this) {
+            paused = false;
+            notifyAll();
         }
     }
+
+        public void cancel() {
+            canceled = true;
+        }
+  @Override
+    public void run() {
+          try {
+            URI uri = new URI(urlText);
+
+            downloadSemaphore.acquire();
+
+            synchronized (this) {
+                while (paused) {
+                    wait();
+                }
+            }
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
+
+            HttpResponse<InputStream> response = httpClient.send(request, HttpResponse.BodyHandlers.ofInputStream());
+
+            String fileName = uri.getPath().substring(uri.getPath().lastIndexOf("/") + 1);
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            fileName = timestamp + "_" + fileName;
+
+            Path destination = Path.of(DESTINATION_FOLDER, fileName);
+
+            long contentLength = response.headers().firstValueAsLong("Content-Length").orElse(-1);
+            long totalBytesRead = 0;
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+
+            try (InputStream inputStream = response.body()) {
+                try (OutputStream outputStream = Files.newOutputStream(destination)) {
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        synchronized (this) {
+                            while (paused) {
+                                wait();
+                            }
+                        }
+
+                        if (canceled) {
+                            break;
+                        }
+
+                        totalBytesRead += bytesRead;
+
+                        int progress = (int) ((double) totalBytesRead / contentLength * 100);
+                        SwingUtilities.invokeLater(() -> {
+                            progressBar.setValue(progress);
+                            percentage.setText("Percentage: " + progress + "%");
+                        });
+
+                        outputStream.write(buffer, 0, bytesRead);
+                        Thread.sleep(300);
+                    }
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(ImageDownload.this, "Error downloading image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            // Move the success message display here, after ensuring download was not canceled
+            if (!canceled) {
+                JOptionPane.showMessageDialog(ImageDownload.this, "Image downloaded successfully!\nSaved to: " + destination.toString());
+            }
+        } catch (URISyntaxException | IOException | InterruptedException ex) {
+            JOptionPane.showMessageDialog(ImageDownload.this, "Error downloading image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            progressBar.setValue(0);
+            textField1.setText("");
+            percentage.setText("");
+            downloadSemaphore.release();
+            currentTask = null;
+        }
+    }
+}
 
     private void downloadImage() {
         String urlText = textField1.getText().trim();
@@ -210,12 +208,6 @@ public class ImageDownload extends javax.swing.JFrame {
         jProgressBar1.setValue(0);
         percentage.setText("");
     }
-
-
-
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -414,6 +406,7 @@ public class ImageDownload extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(() -> new ImageDownload().setVisible(true));
     }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
