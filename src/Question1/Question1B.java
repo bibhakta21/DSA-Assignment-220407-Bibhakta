@@ -1,124 +1,58 @@
+//You are the captain of a spaceship and you have been assigned a mission to explore a distant galaxy. Your spaceship is equipped with a set of engines, where each engine represented by a block. Each engine requires a specific amount of time to be built and can only be built by one engineer.
+//Your task is to determine the minimum time needed to build all the engines using the available engineers. The engineers can either work on building an engine or split into two engineers, with each engineer sharing the workload equally. Both decisions incur a time cost.
+//The time cost of splitting one engineer into two engineers is given as an integer split. Note that if two engineers split at the same time, they split in parallel so the cost would be split.
+//Your goal is to calculate the minimum time needed to build all the engines, considering the time cost of splitting engineers.
+//Input: engines= [1,2,3]
+//Split cost (k)=1
+//Output: 4
+//Example:
+//Imagine you need to build engine represented by an array [1,2,3]   where ith element of an array i.e a[i] represents unit time to build ith engine and the split cost is 1. Initially, there is only one engineer available.
+//The optimal strategy is as follows:
+//        1.	The engineer splits into two engineers, increasing the total count to two. (Split Time: 1) and assign first engineer to build third engine i.e. which will take 3 unit of time.
+//2.	Again, split second engineer into two (split time :1) and assign them to build first and second engine respectively.
+//Therefore, the minimum time needed to build all the engines using optimal decisions on splitting engineers and assigning them to engines. =1+ max (3, 1 + max (1, 2)) = 4.
+//Note: The splitting process occurs in parallel, and the goal is to minimize the total time required to build all the engines using the available engineers while considering the time cost of splitting.
+
+
+
 package Question1;
+
+// This class represents a solution to a problem related to minimizing time for engine repairs.
 
 public class Question1B {
 
-    public static int minTimeToBuildEngines(int[] engines, int k) {
-        int n = engines.length;
-        int[] dp = new int[n + 1]; // dp[i] represents the minimum time to build i engines
-
-        // Initialize dp array with maximum values
-        for (int i = 1; i <= n; i++) {
-            dp[i] = Integer.MAX_VALUE;
-        }
-
-        // Calculate the minimum time
-        for (int i = 1; i <= n; i++) {
-            // Build the i-th engine without splitting
-            dp[i] = Math.min(dp[i], dp[i - 1] + engines[i - 1]);
-
-            // Try all possible splits for building the i-th engine
-            for (int j = 1; j <= i; j++) {
-                int timeForSplit = (j == i) ? 0 : k; // Time for split, 0 if both engineers split at the same time
-                dp[i] = Math.min(dp[i], Math.max(dp[j], dp[i - j]) + timeForSplit);
-            }
-        }
-
-        return dp[n];
-    }
-
+    // The main method for testing the minimumTime function with a sample input.
     public static void main(String[] args) {
         int[] engines = {1, 2, 3};
-        int splitCost = 1;
-        int minTime = minTimeToBuildEngines(engines, splitCost);
-        System.out.println("Minimum time to build all engines: " + minTime);
+        int k = 1;
+        System.out.println(minimumTime(engines, k));
+    }
+
+    // This method calculates the minimum time required for engine repairs with a given set of engines and engineers.
+    public static int minimumTime(int[] engines, int k) {
+        int maxTime = 0; // Variable to store the maximum time needed for repairs.
+        int engineers = 1; // Variable to track the number of available engineers.
+
+        // Iterate through the engines starting from the last one.
+        for (int i = engines.length - 1; i >= 0; i--) {
+            int time = engines[i];
+
+            // While there are not enough engineers to handle the current engine repair time.
+            while (engineers < time) {
+                // Split the remaining repair time into units of 'k' or less, and allocate engineers accordingly.
+                int splitTime = Math.min(time - engineers, k);
+                engineers += splitTime;
+                // Update the maximum time considering the split time.
+                maxTime = Math.max(maxTime, time + splitTime);
+            }
+
+            // Update the maximum time for the current engine, considering the available engineers.
+            maxTime = Math.max(maxTime, time);
+
+            // Reduce the number of engineers after completing the repair of an engine.
+            engineers--;
+        }
+
+        return maxTime; // Return the overall minimum time for engine repairs.
     }
 }
-
-
-
-
-// //1 b)
-// // You are the captain of a spaceship and you have been assigned a mission to explore a distant galaxy. Your spaceship is equipped with a set of engines, where each engine represented by a block. Each engine requires a specific amount of time to be built and can only be built by one engineer.
-// // Your task is to determine the minimum time needed to build all the engines using the available engineers. The engineers can either work on building an engine or split into two engineers, with each engineer sharing the workload equally. Both decisions incur a time cost.
-// // The time cost of splitting one engineer into two engineers is given as an integer split. Note that if two engineers split at the same time, they split in parallel so the cost would be split.
-// // Your goal is to calculate the minimum time needed to build all the engines, considering the time cost of splitting engineers.
-// // Input: engines= [3, 4, 5, 2] Split cost (k)=2
-// // Output: 4
-// // Example:
-// // Imagine you have the list of engines: [3, 4, 5, 2] and the split cost is 2. Initially, there is only one engineer available.
-// // The optimal strategy is as follows:
-// // 1. The engineer splits into two engineers, increasing the total count to two. (Time: 2)
-// // 2. Each engineer takes one engine, with one engineer building the engine that requires 3 units of time and the other engineer building the engine that requires 4 units of time.
-// // 3. Once the engineer finishes building the engine that requires 3 units of time, the engineer splits into two, increasing the total count to three. (Time: 4)
-// // 4. Each engineer takes one engine, with two engineers building the engines that require 2 and 5 units of time, respectively.
-// // Therefore, the minimum time needed to build all the engines using optimal decisions on splitting engineers and assigning them to engines is 4 units.
-// // Note: The splitting process occurs in parallel, and the goal is to minimize the total time required to build all the engines using the available engineers while considering the time cost of splitting.
-
-// import java.util.PriorityQueue;
-// public class Q1b {
-
-//   public int timeToBuildEngine(int[] engines, int splitCost) {
-
-//       PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-
-//       // priority queue is just like queue but it removes the value from lowest to
-//       // highest, which is necessary for this to work
-//       // forgot what its called
-//       // using the for each loop to add engines to minHeap priority queue
-//       for (int engine : engines) {
-//           minHeap.add(engine);
-//       }
-
-//       // System.out.println(minHeap);
-//       int totalTime = 0; // we need to allocate as 0 as base cuz at the start no engine is built
-
-//       // according to question we have 4 engines being built so, we want to keep the
-//       // loop running till we have 1 engine left to build
-
-//       // so we use minHeap.size()>1
-
-//       while (minHeap.size() > 1) {
-//           int firstEngine = minHeap.poll();
-//           int secondEngine = minHeap.poll();
-
-//           int time = (minHeap.size() > 0) ? splitCost : 0; // time is usually going to be 2 unless there is no engines
-//                                                            // left to build
-
-//           // System.out.println(splitTime);
-
-//           // step time is basically when engineers split into 2 engineers then 3 and then
-//           // 4
-//           // whats happening is first 2 engins take 2, and 3 hrs to build so we are taking
-//           // maximum time it takes to complete the engines i.e. 5 then adding the 5 into
-//           // heap
-//           // then we have 4 and 5 engines and it becomes 7 hrs to complete
-//           // and then we have 5,7 note that 7 is not an engine but rather we are splitting
-//           // engineers to build the engine so it becomes 7 in overall since the last
-//           // engine being completed makes time 0
-
-//           int stepTime = Math.max(firstEngine, secondEngine) + time;
-//           // System.out.println(stepTime);
-//           // System.out.println("firstEngine: " + firstEngine);
-//           // System.out.println("secondEngine: " + secondEngine);
-//           // System.out.println("splitTime: " + splitTime);
-//           // System.out.println("stepTime: " + stepTime);
-//           totalTime += time;
-//           // System.out.println(totalTime);
-//           minHeap.add(stepTime);
-//           // System.out.println(minHeap);
-//       }
-
-//       // totalTime += minHeap.poll();
-
-//       return totalTime;
-//   }
-
-//   public static void main(String[] args) {
-//       Q1b q = new Q1b();
-//       int[] engines = { 1,2,3 };
-//       int splitCost = 1;
-//       int result = q.timeToBuildEngine(engines, splitCost);
-//       System.out.println(result);
-//   }
-// }
-
