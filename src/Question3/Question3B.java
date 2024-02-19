@@ -1,11 +1,6 @@
+//b)	Implement Kruskal algorithm and priority queue using minimum heap
+
 package Question3;
-
-// Implement Kruskal algorithm and priority queue using minimum heap
-
-// Time Complexity: O(E log E) where E is the number of edges
-// Space Complexity: O(V + E) where V means the number of vertices or nodes and E is number of Edges
-
-
 import java.util.PriorityQueue;
 
 public class Question3B{
