@@ -159,7 +159,7 @@ public class ImageDownload extends javax.swing.JFrame {
                             });
 
                             outputStream.write(buffer, 0, bytesRead);
-                            Thread.sleep(1000);
+                            Thread.sleep(300);
                         }
                     }
                 } catch (IOException ex) {
