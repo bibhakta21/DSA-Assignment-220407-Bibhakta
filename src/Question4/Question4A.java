@@ -1,93 +1,73 @@
 package Question4;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Question4A{
 
-    static class State {
-        int x, y, keys;
-
-        public State(int x, int y, int keys) {
-            this.x = x;
-            this.y = y;
-            this.keys = keys;
-        }
-    }
-
-    public static int minMovesToCollectKeys(char[][] grid) {
+    public int minMovesToCollectKeys(char[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
-        int allKeys = 0;
+        int keysCount = 0;
 
-        // Find the starting position and count the total number of keys
-        int startX = -1, startY = -1;
+        // Find the starting point and count the total number of keys
+        int startX = 0, startY = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 'S') {
                     startX = i;
                     startY = j;
                 } else if (Character.isLowerCase(grid[i][j])) {
-                    allKeys |= 1 << (grid[i][j] - 'a');
+                    keysCount++;
                 }
             }
         }
-
-        Queue<State> queue = new LinkedList<>();
-        boolean[][][] visited = new boolean[m][n][64]; // 64 = 2^6 (all possible keys)
-        queue.offer(new State(startX, startY, 0));
-        visited[startX][startY][0] = true;
 
         int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-        int steps = 0;
-        int collectedKeys = 0;
+        boolean[][][] visited = new boolean[m][n][1 << keysCount]; // Using bitmask to represent collected keys
+        Queue<int[]> queue = new LinkedList<>();
+
+        // Add initial state to the queue (startX, startY, collectedKeys, moves)
+        queue.offer(new int[]{startX, startY, 0, 0});
+        visited[startX][startY][0] = true;
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                State curr = queue.poll();
+            int[] current = queue.poll();
+            int x = current[0];
+            int y = current[1];
+            int collectedKeys = current[2];
+            int moves = current[3];
 
-                // Check if all keys are collected
-                if (curr.keys == allKeys) {
-                    return steps;
-                }
+            if (collectedKeys == (1 << keysCount) - 1) {
+                // All keys collected, return the minimum moves
+                return moves;
+            }
 
-                // Explore neighbors
-                for (int[] dir : directions) {
-                    int newX = curr.x + dir[0];
-                    int newY = curr.y + dir[1];
-                    int newKeys = curr.keys;
+            for (int[] dir : directions) {
+                int newX = x + dir[0];
+                int newY = y + dir[1];
 
-                    // Check if the new position is within bounds
-                    if (newX < 0 || newX >= m || newY < 0 || newY >= n) {
+                if (newX >= 0 && newX < m && newY >= 0 && newY < n && grid[newX][newY] != 'W') {
+                    char cell = grid[newX][newY];
+                    int newKeys = collectedKeys;
+
+                    if (Character.isLowerCase(cell)) {
+                        // Collect the key
+                        newKeys |= 1 << (cell - 'a');
+                    } else if (Character.isUpperCase(cell) && ((collectedKeys >> (cell - 'A')) & 1) == 0) {
+                        // Door without the key
                         continue;
                     }
 
-                    // Check if the new position is a wall
-                    if (grid[newX][newY] == 'W') {
-                        continue;
-                    }
-
-                    // If it's a key, collect it
-                    if (Character.isLowerCase(grid[newX][newY])) {
-                        newKeys |= 1 << (grid[newX][newY] - 'a');
-                    }
-
-                    // If it's a door and we don't have the corresponding key, skip
-                    if (Character.isUpperCase(grid[newX][newY]) && ((newKeys >> (grid[newX][newY] - 'A')) & 1) == 0) {
-                        continue;
-                    }
-
-                    // Check if we have already visited this state
                     if (!visited[newX][newY][newKeys]) {
+                        queue.offer(new int[]{newX, newY, newKeys, moves + 1});
                         visited[newX][newY][newKeys] = true;
-                        queue.offer(new State(newX, newY, newKeys));
                     }
                 }
             }
-            steps++;
         }
 
-        // If we can't collect all keys
+        // Impossible to collect all keys
         return -1;
     }
 
@@ -98,9 +78,13 @@ public class Question4A{
                 {'r', 'P', 'Q', 'P', 'R'}
         };
 
-        System.out.println(minMovesToCollectKeys(grid)); // Output: 8
+        Question4A solver = new Question4A();
+        int result = solver.minMovesToCollectKeys(grid);
+        System.out.println(result);
     }
 }
+
+
 
 
 
