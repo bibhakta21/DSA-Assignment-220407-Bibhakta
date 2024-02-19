@@ -1,111 +1,68 @@
+//a)
+//You are the manager of a clothing manufacturing factory with a production line of super sewing machines. The production line consists of n super sewing machines placed in a line. Initially, each sewing machine has a certain number of dresses or is empty.
+//For each move, you can select any m (1 <= m <= n) consecutive sewing machines on the production line and pass one dress from each selected sewing machine to its adjacent sewing machine simultaneously.
+//Your goal is to equalize the number of dresses in all the sewing machines on the production line. You need to determine the minimum number of moves required to achieve this goal. If it is not possible to equalize the number of dresses, return -1.
+//Input: [1,0,5]
+//Output: 2
+//Example 1:
+//Imagine you have a production line with the following number of dresses in each sewing machine: [1,0,5]. The production line has 5 sewing machines.
+//Here's how the process works:
+//        1.	Initial state: [1,0,5]
+//        2.	Move 1: Pass one dress from the third sewing machine to the first sewing machine, resulting in [1,1,4]
+//        3.	Move 2: Pass one dress from the second sewing machine to the first sewing machine, and from third to first sewing Machine [2,1,3]
+//        4.	Move 3: Pass one dress from the third sewing machine to the second sewing machine, resulting in [2,2,2]
+//After these 3 moves, the number of dresses in each sewing machine is equalized to 2. Therefore, the minimum number of moves required to equalize the number of dresses is 3.
+//
+//
+//
+
+
 package Question2;
-
-
-
 public class Question2A {
-    int dresses[];
-    final int noOfSewingMachines;
-    final int totalDressCount, idealDressCount;
-    final boolean isEquilizable;
 
-    // index is equal to sewing mahcine
-    Question2A(int[] dresses) {
-        this.dresses = dresses;
-        noOfSewingMachines = dresses.length;
-        int[] totalCount_solvable = checkEquilizabililty();
-        isEquilizable = totalCount_solvable[1] == 1 ? true : false;
-        totalDressCount = totalCount_solvable[0];
-        idealDressCount = totalDressCount / noOfSewingMachines;
-    }
-
-    int[] checkEquilizabililty() {
-        // returns total dress count and how many is total dresses
+    // Method to calculate minimum moves to equalize the number of dresses
+    public static int minMovesToEqualize(int[] dresses) {
+        // Calculate the total number of dresses
         int totalDresses = 0;
-        for (int sewingMachine = 0; sewingMachine < noOfSewingMachines; sewingMachine++) {
-            totalDresses += dresses[sewingMachine];
+        for (int dress : dresses) {
+            totalDresses += dress;
         }
-        if (totalDresses % noOfSewingMachines == 0) {
-            return new int[] { totalDresses, 1 };
-        }
-        return new int[] { totalDresses, 0 };
-    }
 
-    int[] minDress_maxDress() {
-        // Returns the sewing machine with least and most dresses
-        int min = 0;
-        int max = 0;
-        for (int sewingMachine = 1; sewingMachine < noOfSewingMachines; sewingMachine++) {
-            if (dresses[sewingMachine] < dresses[min]) {
-                min = sewingMachine;
-            }
-            if (dresses[sewingMachine] > dresses[max]) {
-                max = sewingMachine;
-            }
-        }
-        return new int[] { min, max };
-    }
+        // Get the number of individuals
+        int n = dresses.length;
 
-    boolean ifEqualized() {
-        for (int sewingMachine = 1; sewingMachine < noOfSewingMachines; sewingMachine++) {
-            if (dresses[sewingMachine] != idealDressCount) {
-                return false;
+        // Check if it's possible to equalize the dresses
+        if (totalDresses % n != 0) {
+            return -1; // If not evenly divisible, return -1 indicating impossibility
+        }
+
+        // Calculate the target number of dresses for each individual
+        int target = totalDresses / n;
+
+        // Initialize the moves counter
+        int moves = 0;
+
+        // Iterate through each individual's dresses
+        for (int i = 0; i < n; i++) {
+            // If an individual has more dresses than the target
+            if (dresses[i] > target) {
+                // Calculate the excess dresses and redistribute them
+                moves += dresses[i] - target;
+                dresses[(i + 1) % n] += dresses[i] - target;
+                dresses[i] = target; // Set the current individual's dresses to the target
             }
         }
-        return true;
+
+        // Return the total moves required to equalize the dresses
+        return moves;
     }
 
-    int equalize() {
-        if (!isEquilizable) {
-            return -1;
-        }
-        // Got an infinite loop
-        int moveCounter = 0;
-        // while (!ifEqualized()) {
-
-        // System.out.println(min_max[1] + "-" + min_max[0]);
-        // System.out.println(min_max[1] - min_max[0] > 0);
-        System.out.println(idealDressCount + " " + totalDressCount);
-        System.out.println();
-        while (!ifEqualized()) {
-            int[] min_max = minDress_maxDress();
-            if (min_max[1] - min_max[0] > 0) {
-                while (dresses[min_max[1]] != idealDressCount && dresses[min_max[0]] != idealDressCount) {
-                    for (int i = min_max[1]; i > min_max[0]; i--) {
-                        dresses[i]--;
-                        dresses[i - 1]++;
-
-                    }
-                    moveCounter++;
-                }
-            } else if (min_max[1] - min_max[0] < 0) {
-                while (dresses[min_max[1]] != idealDressCount && dresses[min_max[0]] != idealDressCount) {
-                    for (int i = min_max[1]; i < min_max[0]; i++) {
-                        dresses[i]--;
-                        dresses[i + 1]++;
-                    }
-                    moveCounter++;
-                }
-            } else {
-                return moveCounter;
-            }
-        }
-        return moveCounter;
-
-    }
-
-    void printer() {
-        System.out.println();
-        for (int sewingMachine = 0; sewingMachine < noOfSewingMachines; sewingMachine++) {
-            System.out.print(dresses[sewingMachine] + "\t");
-        }
-        System.out.println();
-    }
-
+    // Main method for testing
     public static void main(String[] args) {
-        Question2A sp = new Question2A(new int[] { 2, 1, 3, 0, 2 });
-        System.out.println(sp.noOfSewingMachines);
-        System.out.println(sp.equalize());
-        sp.printer();
+        // Test case with an array representing the number of dresses for each individual
+        int[] inputDresses = {1, 0, 5};
+        System.out.println(minMovesToEqualize(inputDresses)); // Output the result of the method
     }
 }
+
 
