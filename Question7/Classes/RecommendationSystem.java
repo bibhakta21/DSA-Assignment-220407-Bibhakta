@@ -16,7 +16,7 @@ public class RecommendationSystem {
     public RecommendationSystem() {
         // Connect to the database
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/dsa_db", "username", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/dsa_dba", "username", "password");
         } catch (SQLException e) {
             e.printStackTrace();
         }

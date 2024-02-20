@@ -70,9 +70,9 @@ public class FriendRecommendation {
     // Sample usage
     public static void main(String[] args) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dsa_db", "username", "password");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dsa_dba", "username", "password");
             FriendRecommendation friendRecommendation = new FriendRecommendation(connection);
-            String user = "ashishmool";
+            String user = "Bibhakta";
 
             // Generate and display friend recommendations for the user
             List<String> recommendations = friendRecommendation.generateFriendRecommendations(user);
