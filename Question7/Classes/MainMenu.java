@@ -28,6 +28,7 @@ public class MainMenu {
     //Labels
     JLabel findjobsthroughyour;
     JLabel community;
+    JLabel community2;
     JLabel loginUsernameLabel;
     JLabel loginPasswordLabel;
     JLabel sideImage;
@@ -69,7 +70,7 @@ public class MainMenu {
         mainMenuFrame.setSize(1200,700);
         mainMenuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainMenuFrame.setLocationRelativeTo(null);
-        mainMenuFrame.setResizable(false);
+        mainMenuFrame.setResizable(true);
         ImageIcon VTagIcon = new ImageIcon("Images\\VTagIcon.png");
         mainMenuFrame.setIconImage(VTagIcon.getImage());
 
@@ -171,10 +172,12 @@ public class MainMenu {
         });
 
         forgotPasswordFrame = new JFrame();
-        forgotPasswordFrame.setTitle("DSA Assignment");
+        forgotPasswordFrame.setTitle("Social Media Application");
         forgotPasswordFrame.setSize(500,300);
         forgotPasswordFrame.setLocationRelativeTo(null);
         forgotPasswordFrame.setBackground(Color.white);
+        ImageIcon VTagIcon1 = new ImageIcon("Images\\VTagIcon.png");
+        forgotPasswordFrame.setIconImage(VTagIcon1.getImage());
 
         EmailLabelForForgotPassword.setFont(new Font("Helvetica",Font.BOLD,15));
         EmailLabelForForgotPassword.setBounds(60,80,500,18);
@@ -200,7 +203,7 @@ public class MainMenu {
         });
 
         JButton otpSubmitButton = new JButton("Submit");
-        otpSubmitButton.setBounds(280,170,80,40);
+        otpSubmitButton.setBounds(50,170,80,40);
         otpSubmitButton.setForeground(Color.white);
         otpSubmitButton.setBackground(new Color(10,102,194));
 
@@ -239,7 +242,7 @@ public class MainMenu {
 
 
         loginButton = new JButton("Log in");
-        loginButton.setBackground(new Color(10,102,194));
+        loginButton.setBackground(new Color(171,127,246));
         loginButton.setForeground(new Color(255,255,255));
         loginButton.setFont(new Font("Helvetica",Font.BOLD,15));
         loginButton.setBounds(50,400,310,45);
@@ -304,7 +307,7 @@ public class MainMenu {
         sideImage = new JLabel(sideimg);
         sideImage.setBounds(300,-80,1000,1000);
 
-        newAccountButton = new JButton("Not have an account? Register Now");
+        newAccountButton = new JButton("Don't have an account? Register Now");
         newAccountButton.setBackground(new Color(255,255,255));
         newAccountButton.setForeground(new Color(0, 0, 0, 191));
         newAccountButton.setFont(new Font("Helvetica",Font.PLAIN,15));
@@ -327,18 +330,33 @@ public class MainMenu {
             }
         });
 
+        
         signupPanel = new JPanel();
-        signupPanel.setBackground(new Color(243,242,240));
-        signupPanel.setBounds(0,0,1200,700);
+        signupPanel.setBackground(new Color(243, 242, 240));
+        signupPanel.setBounds(200, 0, 900, 700);
+
+        // Add the image label to the signupPanel
+        String imagePath = "Images\\loginpage.png";
+        ImageIcon registrationImageIcon = new ImageIcon(imagePath);
+        JLabel registrationImageLabel = new JLabel(registrationImageIcon);
+        registrationImageLabel.setBounds(50, 140, 350, 450);
+        signupPanel.add(registrationImageLabel);
 
         makethemostoutofurprofessionallife = new JLabel("Register Now");
-        makethemostoutofurprofessionallife.setForeground(new Color(24,24,24));
-        makethemostoutofurprofessionallife.setFont(new Font("Helvetica",Font.ITALIC,30));
-        makethemostoutofurprofessionallife.setBounds(330,60,1000,40);
+        makethemostoutofurprofessionallife.setForeground(new Color(24, 24, 24));
+        makethemostoutofurprofessionallife.setFont(new Font("Helvetica", Font.ITALIC, 30));
+        makethemostoutofurprofessionallife.setBounds(410, 60, 1000, 40);
+
+        
 
         signupMainPanel = new JPanel();
-        signupMainPanel.setBackground(new Color(255,255,255));
-        signupMainPanel.setBounds(410,140,350,450);
+        signupMainPanel.setBackground(new Color(255, 255, 255));
+        signupMainPanel.setBounds(410, 140, 350, 450);
+        
+        community2 = new JLabel("Join us now");
+        community2.setFont(new Font("Helvetica",Font.ITALIC,20));
+        community2.setForeground(new Color(0, 0, 0, 191));
+        community2.setBounds(50, 95, 700, 45);
 
         signupEmailLabel = new JLabel("Email*");
         signupEmailLabel.setFont(new Font("Helvetica", Font.PLAIN,14));
@@ -362,6 +380,7 @@ public class MainMenu {
                 signupEmailTextfield.setBorder(new LineBorder(Color.decode("#000000")));
             }
         });
+        
 
         signupUsernameLabel = new JLabel("Username*");
         signupUsernameLabel.setFont(new Font("Helvetica", Font.PLAIN,14));
@@ -413,6 +432,33 @@ public class MainMenu {
         byclicking.setForeground(new Color(102,102,102));
         byclicking.setFont(new Font("Helvetica",Font.PLAIN,15));
         byclicking.setBounds(38,310,500,13);
+                    // Add a JButton for going back to the login page
+            JButton backButton = new JButton("Back to Login");
+            backButton.setBackground(new Color(255, 255, 255));
+            backButton.setForeground(new Color(0, 0, 0, 191));
+            backButton.setFont(new Font("Helvetica", Font.PLAIN, 15));
+            backButton.setBorder(new LineBorder(new Color(0, 0, 0, 191)));
+            backButton.setBounds(50, 20, 150, 30);
+
+            backButton.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    backButton.setBackground(Color.decode("#F5F5F5"));
+                    backButton.setBorder(new LineBorder(Color.decode("#000000"), 2));
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    backButton.setBackground(new Color(255, 255, 255));
+                    backButton.setBorder(new LineBorder(Color.decode("#000000")));
+                }
+
+                public void mouseClicked(MouseEvent e) {
+                    signupPanel.setVisible(false);
+                    loginPanel.setVisible(true);
+                }
+            });
+
+signupPanel.add(backButton);
 
         termsandconditions = new JLabel("");
         termsandconditions.setForeground(new Color(10,102,194));
@@ -420,7 +466,7 @@ public class MainMenu {
         termsandconditions.setBounds(60,325,500,13);
 
         signupButton = new JButton("Register Now");
-        signupButton.setBackground(new Color(10,102,194));
+        signupButton.setBackground(new Color(171,127,246));
         signupButton.setForeground(new Color(255,255,255));
         signupButton.setFont(new Font("Helvetica",Font.BOLD,15));
         signupButton.setBounds(30,350,294,45);
@@ -484,6 +530,7 @@ public class MainMenu {
                 }
             }
         });
+        
 
         signupMainPanel.setLayout(null);
         signupMainPanel.add(signupEmailLabel);
