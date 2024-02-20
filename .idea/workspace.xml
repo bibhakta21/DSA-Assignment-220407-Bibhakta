@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2f39c92e-810a-4435-905e-088edaf6a82f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DSA Assignment Bibhakta.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DSA Assignment Bibhakta.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/.netbeans_automatic_build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/.netbeans_update_resources" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$DownloadTask$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$DownloadTask$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$DownloadTask$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$DownloadTask$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload$DownloadTask.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageDownload.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageUpload$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageUpload$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageUpload.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/ImageUpload.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/Welcome TO Image Downloader.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/GUI/Welcome To Image Downloader (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/ImageUpload$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/ImageUpload.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/ImageUpload.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/build/classes/imagedownloader/Imagedownloader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/lib/nblibraries.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/nbproject/private/private.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/nbproject/private/private.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/pexels-photo-1108099.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/GUI/ImageDownload.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/GUI/ImageDownload.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/GUI/ImageUpload.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/GUI/ImageUpload.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/GUI/Welcome TO Image Downloader.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/GUI/Welcome To Image Downloader (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/ImageUpload.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/ImageUpload.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Imagedownloader/src/imagedownloader/Imagedownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question1/Question1A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question1/Question1B.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question2/Question2A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question2/Question2B.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question3/Question3A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question3/Question3B.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question4/Question4A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question4/Question4B.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question5/Question5A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question5/Question5B.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Classes/FriendRecommendation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Classes/MainClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Classes/MainMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Classes/MainPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Classes/RecommendationSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/CustomizedComponents/RoundedButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/CustomizedComponents/RoundedLabel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/CustomizedComponents/RoundedPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Entities/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/VtagIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/fileIconBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/flleIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/friendsButtonIconBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/friendsButtonIconWhite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/imageIcon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/imageIconBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/instagram-post.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/loginPageSidePage.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/loginPageSidePage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/loginpage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/logoutButtonBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/logoutButtonWhite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/postsButtonIconBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/postsButtonIconWhite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/profileDPImageBoy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/send.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/sendBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/sendChat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/settingsButtonIconBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/Images/settingsButtonIconWhite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/lib/activation-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/lib/javax.mail.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/lib/mysql-connector-j-8.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/mailClasses/JavaMailUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Question7/question-seven-dsa-220417.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2cctnZS51G28QgudifT0sVmkcRj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Question1A.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Bibhakta lamsal/Desktop/DSA Assignment Bibhakta",
+    "nodejs_package_manager_path": "npm",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Question1A" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Question1.Question1A" />
+      <module name="Question 1 to 61" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Question1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Question1A" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f39c92e-810a-4435-905e-088edaf6a82f" name="Changes" comment="" />
+      <created>1708422864645</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708422864645</updated>
+      <workItem from="1708422865911" duration="6000" />
+      <workItem from="1708422888815" duration="35000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

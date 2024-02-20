@@ -13,8 +13,6 @@
 //Therefore, the minimum time needed to build all the engines using optimal decisions on splitting engineers and assigning them to engines. =1+ max (3, 1 + max (1, 2)) = 4.
 //Note: The splitting process occurs in parallel, and the goal is to minimize the total time required to build all the engines using the available engineers while considering the time cost of splitting.
 
-
-
 package Question1;
 
 // This class represents a solution to a problem related to minimizing time for engine repairs.
@@ -25,7 +23,7 @@ public class Question1B {
     public static void main(String[] args) {
         int[] engines = {1, 2, 3};
         int k = 1;
-        System.out.println(minimumTime(engines, k));
+        System.out.println("Total time required to build all the engines using the available engineers= "+minimumTime(engines, k));
     }
 
     // This method calculates the minimum time required for engine repairs with a given set of engines and engineers.

@@ -61,7 +61,7 @@ public class Question2A {
     public static void main(String[] args) {
         // Test case with an array representing the number of dresses for each individual
         int[] inputDresses = {1, 0, 5};
-        System.out.println(minMovesToEqualize(inputDresses)); // Output the result of the method
+        System.out.println("minimum number of moves required to equalize the number of dresses = "+minMovesToEqualize(inputDresses)); // Output the result of the method
     }
 }
 
